@@ -67,8 +67,6 @@ const lastDisableCommits = (await $`git log ${lastMergeStart}..${lastMergeEnd} -
     .map(commitString => formatCommit(commitString))
     .filter(commit => !commit.status)
 if (showMessage) console.log('上次被關閉的點', lastDisableCommits)
-// 將這些被關閉的點都先enable 打開順序要返過來，所以先reverse
-lastDisableCommits.reverse()
 // 依序enable
 for (const commit of lastDisableCommits) {
     const message = `${Status.Enable}: ${commit.content}`
